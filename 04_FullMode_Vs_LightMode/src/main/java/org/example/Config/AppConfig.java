@@ -22,7 +22,7 @@ public class AppConfig {
         return new SpringBeanTwo();
     }*/
 
-    @Bean
+/*    @Bean
     public SpringBeanTwo SpringBeanTwo(){
         SpringBeanThree springBeanThree1 = SpringBeanThree();
         SpringBeanThree springBeanThree2 = SpringBeanThree();
@@ -32,5 +32,5 @@ public class AppConfig {
     @Bean
     public SpringBeanThree SpringBeanThree(){
         return new SpringBeanThree();
-    }
+    }*/
 }

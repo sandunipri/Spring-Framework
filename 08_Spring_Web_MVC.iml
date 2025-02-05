@@ -9,6 +9,11 @@
         <webroots>
           <root url="file://$MODULE_DIR$/08_Spring_Web_MVC/web/web" relative="/" />
         </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/08_Spring_Web_MVC/src/main/java" />
+          <root url="file://$MODULE_DIR$/08_Spring_Web_MVC/src/main/resources" />
+          <root url="file://$MODULE_DIR$/08_Spring_Web_MVC/target/generated-sources/annotations" />
+        </sourceRoots>
       </configuration>
     </facet>
     <facet type="web" name="Web2">

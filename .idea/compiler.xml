@@ -15,6 +15,7 @@
         <module name="01_Spring_Core" />
         <module name="02_Spring_Bean_LifeCycle" />
         <module name="06_Runtime_Value_Injection" />
+        <module name="12_Spring_Data_JPA" />
         <module name="03_Spring_Dependency_Injection" />
       </profile>
     </annotationProcessing>

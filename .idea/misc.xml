@@ -16,11 +16,14 @@
         <option value="$PROJECT_DIR$/09_Spring_RestController/pom.xml" />
         <option value="$PROJECT_DIR$/10_Back_End/pom.xml" />
         <option value="$PROJECT_DIR$/12_Spring_Data_JPA/pom.xml" />
+        <option value="$PROJECT_DIR$/S13_Spring_Boot/pom.xml" />
+        <option value="$PROJECT_DIR$/A13_Spring_Boot/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/03_Spring_DI/pom.xml" />
+        <option value="$PROJECT_DIR$/S13_Spring_Boot/pom.xml" />
       </set>
     </option>
   </component>

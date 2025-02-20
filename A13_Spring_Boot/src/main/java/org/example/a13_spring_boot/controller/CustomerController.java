@@ -1,7 +1,7 @@
 package org.example.a13_spring_boot.controller;
 
 import org.example.a13_spring_boot.dto.CustomerDTO;
-import org.example.a13_spring_boot.service.CustomerService;
+import org.example.a13_spring_boot.service.CustomerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +13,7 @@ import java.util.List;
 public class CustomerController {
 
     @Autowired
-    private CustomerService customerService;
+    private CustomerServiceImpl customerService;
 
     @PostMapping(path = "save")
     public Boolean getCustomer(@RequestBody CustomerDTO customerDTO) {

@@ -1,7 +1,7 @@
 package org.example.a13_spring_boot.controller;
 
 import org.example.a13_spring_boot.dto.ItemDTO;
-import org.example.a13_spring_boot.service.ItemService;
+import org.example.a13_spring_boot.service.ItemServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +13,7 @@ import java.util.List;
 public class ItemController {
 
     @Autowired
-    private ItemService itemService;
+    private ItemServiceImpl itemService;
 
     @PostMapping(path = "save")
     public Boolean saveItem(@RequestBody ItemDTO itemDTO){

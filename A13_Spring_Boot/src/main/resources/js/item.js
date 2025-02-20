@@ -15,10 +15,10 @@ $(document).ready(function () {
             }),
             success: (response) => {
                 getAllItems();
-                alert("item Added")
+                alert(response.message)
             },
             error: (error) => {
-                alert("item Not Added")
+                alert(error.message)
             }
         })
     })
@@ -34,12 +34,12 @@ $(document).ready(function () {
                 "qty": $('#itemQty').val(),
                 "price": $('#itemPrice').val()
             }),
-            success: (response) => {
-                alert("Item Updated")
+            success: (res) => {
+                alert(res.message)
                 getAllItems();
             },
-            error: (error) => {
-                alert("Item Not Updated")
+            error: (res) => {
+                alert(res.message)
             }
 
         })
@@ -53,7 +53,7 @@ const getAllItems = () => {
         type: "GET",
         success: (response) => {
             $('#itemTableBody').empty()
-            response.forEach((item) => {
+            response.data.forEach((item) => {
                 $('#itemTableBody').append(`
                     <tr>
                         <th>${item.code}</th>
@@ -67,8 +67,8 @@ const getAllItems = () => {
                     `)
             })
         },
-        error: (error) => {
-            alert("Error")
+        error: (res) => {
+            alert(res.message)
         }
 
     })
@@ -81,12 +81,12 @@ const deleteItem = (code) => {
             type: "DELETE",
             success: (response) => {
                 console.log("Item Deleted:", response);
-                alert("Item Deleted Successfully");
+                alert(response.message);
                 getAllItems();
             },
             error: (error) => {
                 console.error("Error Deleting item:", error.responseText);
-                alert("Error Deleting items");
+                alert(error.message);
             }
         });
     } else {

@@ -1,6 +1,7 @@
 package org.example.a13_spring_boot.service.impl;
 
 import org.example.a13_spring_boot.dto.ItemDTO;
+import org.example.a13_spring_boot.entity.Customer;
 import org.example.a13_spring_boot.entity.Item;
 import org.example.a13_spring_boot.repo.ItemRepo;
 import org.example.a13_spring_boot.service.ItemService;
@@ -28,8 +29,12 @@ public class ItemServiceImpl implements ItemService {
                 itemDTO.getQty(),
                 itemDTO.getPrice()
         );*/
-        itemRepo.save(modelMapper.map(itemDTO,Item.class));
-        return true;
+
+        if (!itemRepo.existsById(itemDTO.getCode())){
+            itemRepo.save(modelMapper.map(itemDTO, Item.class));
+            return true;
+        }
+        return false;
     }
 
     @Override

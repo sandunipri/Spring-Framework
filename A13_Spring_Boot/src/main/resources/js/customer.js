@@ -13,10 +13,10 @@ $(document).ready(function () {
             }),
             success: (response) => {
                 getAllCustomers();
-                alert("Customer Added")
+                alert(response.message)
             },
             error: (error) => {
-                alert("Customer Not Added")
+                // alert("Customer Not Added")
             }
         })
     })
@@ -32,11 +32,11 @@ $(document).ready(function () {
                 "address": $('#customerAddress').val()
             }),
             success: (response) => {
-                alert("Customer Updated")
+                alert(response.message)
                 getAllCustomers();
             },
             error: (error) => {
-                alert("Customer Not Updated")
+                alert(error.message)
             }
 
         })
@@ -50,7 +50,7 @@ const getAllCustomers = () => {
         type: "GET",
         success: (response) => {
             $('#customerTableBody').empty()
-            response.forEach((customer) => {
+            response.data.forEach((customer) => {
                 $('#customerTableBody').append(`
                     <tr>
                         <th>${customer.id}</th>
@@ -64,7 +64,7 @@ const getAllCustomers = () => {
             })
         },
         error: (error) => {
-            alert("Error")
+            alert(error.message)
         }
 
     })
@@ -77,12 +77,12 @@ const deleteCustomer = (id) => {
             type: "DELETE",
             success: (response) => {
                 console.log("Customer Deleted:", response);
-                alert("Customer Deleted Successfully");
+                alert(response.message);
                 getAllCustomers();
             },
             error: (error) => {
                 console.error("Error Deleting Customer:", error.responseText);
-                alert("Error Deleting Customer");
+                alert(error.message);
             }
         });
     } else {

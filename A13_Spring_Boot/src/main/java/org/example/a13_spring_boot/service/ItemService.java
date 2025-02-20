@@ -3,6 +3,8 @@ package org.example.a13_spring_boot.service;
 import org.example.a13_spring_boot.dto.ItemDTO;
 import org.example.a13_spring_boot.entity.Item;
 import org.example.a13_spring_boot.repo.ItemRepo;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,19 +17,22 @@ public class ItemService {
     @Autowired
     private ItemRepo itemRepo;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     public Boolean saveItem(ItemDTO itemDTO) {
-        Item item = new Item(
+      /*  Item item = new Item(
                 itemDTO.getCode(),
                 itemDTO.getName(),
                 itemDTO.getQty(),
                 itemDTO.getPrice()
-        );
-        itemRepo.save(item);
+        );*/
+        itemRepo.save(modelMapper.map(itemDTO,Item.class));
         return true;
     }
 
     public List<ItemDTO> getItems() {
-        List<Item> items = itemRepo.findAll();
+     /*   List<Item> items = itemRepo.findAll();
         List<ItemDTO> itemDTOs = new ArrayList<>();
         for (Item item : items){
             itemDTOs.add(
@@ -39,19 +44,14 @@ public class ItemService {
                     )
             );
         }
-        return itemDTOs;
+        return itemDTOs;*/
+        return modelMapper.map(itemRepo.findAll(),new TypeToken<List<ItemDTO>>(){}.getType());
     }
 
 
     public Boolean updateItem(ItemDTO itemDTO) {
         if (itemRepo.existsById(itemDTO.getCode())){
-            Item item = new Item(
-                    itemDTO.getCode(),
-                    itemDTO.getName(),
-                    itemDTO.getQty(),
-                    itemDTO.getPrice()
-            );
-            itemRepo.save(item);
+            itemRepo.save(modelMapper.map(itemDTO,Item.class));
             return true;
         }
         return false;

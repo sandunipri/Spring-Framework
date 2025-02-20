@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/customer")
+@CrossOrigin
 public class CustomerController {
 
     @Autowired
@@ -24,4 +25,18 @@ public class CustomerController {
     public List<CustomerDTO> getCustomer() {
         return customerService.getCustomers();
     }
+
+    @PutMapping
+    public Boolean updateCustomer(@RequestBody CustomerDTO customerDTO) {
+       boolean response = customerService.updateCustomer(customerDTO);
+       return response;
+    }
+
+    @DeleteMapping(path = "delete", params = {"id"})
+    public boolean deleteCustomer(@RequestParam(value = "id") int id){
+        System.out.println(id );
+        return customerService.deleteCustomer(id);
+    }
+
+
 }

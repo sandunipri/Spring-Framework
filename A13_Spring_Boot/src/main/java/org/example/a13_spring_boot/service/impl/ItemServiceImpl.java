@@ -1,8 +1,9 @@
-package org.example.a13_spring_boot.service;
+package org.example.a13_spring_boot.service.impl;
 
 import org.example.a13_spring_boot.dto.ItemDTO;
 import org.example.a13_spring_boot.entity.Item;
 import org.example.a13_spring_boot.repo.ItemRepo;
+import org.example.a13_spring_boot.service.ItemService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;

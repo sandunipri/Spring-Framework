@@ -1,8 +1,9 @@
-package org.example.a13_spring_boot.service;
+package org.example.a13_spring_boot.service.impl;
 
 import org.example.a13_spring_boot.dto.CustomerDTO;
 import org.example.a13_spring_boot.entity.Customer;
 import org.example.a13_spring_boot.repo.CustomerRepo;
+import org.example.a13_spring_boot.service.CustomerService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package org.example.a13_spring_boot.controller;
 
 import org.example.a13_spring_boot.dto.CustomerDTO;
-import org.example.a13_spring_boot.service.CustomerServiceImpl;
+import org.example.a13_spring_boot.service.impl.CustomerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

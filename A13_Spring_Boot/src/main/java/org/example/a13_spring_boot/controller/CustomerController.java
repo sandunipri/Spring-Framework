@@ -2,7 +2,9 @@ package org.example.a13_spring_boot.controller;
 
 import org.example.a13_spring_boot.dto.CustomerDTO;
 import org.example.a13_spring_boot.service.impl.CustomerServiceImpl;
+import org.example.a13_spring_boot.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,27 +18,32 @@ public class CustomerController {
     private CustomerServiceImpl customerService;
 
     @PostMapping(path = "save")
-    public Boolean getCustomer(@RequestBody CustomerDTO customerDTO) {
+    public ResponseUtil getCustomer(@RequestBody CustomerDTO customerDTO) {
         boolean res = customerService.saveCustomer(customerDTO);
-        return res;
+        if (res) {
+           return new ResponseUtil(201,"customer is saved",null);
+        }
+        return new ResponseUtil(409,"customer is already exists",null);
     }
 
     @GetMapping(path = "get")
-    public List<CustomerDTO> getCustomer() {
-        return customerService.getCustomers();
+    public ResponseUtil getCustomer() {
+        return new ResponseUtil(200,"success",customerService.getCustomers());
     }
 
     @PutMapping
-    public Boolean updateCustomer(@RequestBody CustomerDTO customerDTO) {
+    public ResponseUtil updateCustomer(@RequestBody CustomerDTO customerDTO) {
        boolean response = customerService.updateCustomer(customerDTO);
-       return response;
+       if (response){
+           return new ResponseUtil(200,"Customer is updated",null);
+       }
+        return new ResponseUtil(404,"customer not updated",null);
     }
 
     @DeleteMapping(path = "delete", params = {"id"})
-    public boolean deleteCustomer(@RequestParam(value = "id") int id){
+    public ResponseUtil deleteCustomer(@RequestParam(value = "id") int id){
         System.out.println(id );
-        return customerService.deleteCustomer(id);
+        customerService.deleteCustomer(id);
+        return new ResponseUtil(200,"Customer is deleted",null);
     }
-
-
 }

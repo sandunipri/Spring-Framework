@@ -27,8 +27,12 @@ public class CustomerServiceImpl implements CustomerService {
                 customerDTO.getName(),
                 customerDTO.getAddress()
         );*/
-        customerRepo.save(modelMapper.map(customerDTO,Customer.class));
-        return true;
+
+        if (!customerRepo.existsById(customerDTO.getId())){
+            customerRepo.save(modelMapper.map(customerDTO,Customer.class));
+            return true;
+        }
+        return false;
     }
 
     @Override

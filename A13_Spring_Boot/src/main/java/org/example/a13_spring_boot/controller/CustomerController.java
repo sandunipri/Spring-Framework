@@ -19,31 +19,26 @@ public class CustomerController {
 
     @PostMapping(path = "save")
     public ResponseUtil getCustomer(@RequestBody CustomerDTO customerDTO) {
-        boolean res = customerService.saveCustomer(customerDTO);
-        if (res) {
-           return new ResponseUtil(201,"customer is saved",null);
-        }
-        return new ResponseUtil(409,"customer is already exists",null);
+        customerService.saveCustomer(customerDTO);
+        return new ResponseUtil(201, "customer is saved", null);
+
     }
 
     @GetMapping(path = "get")
     public ResponseUtil getCustomer() {
-        return new ResponseUtil(200,"success",customerService.getCustomers());
+        return new ResponseUtil(200, "success", customerService.getCustomers());
     }
 
     @PutMapping
     public ResponseUtil updateCustomer(@RequestBody CustomerDTO customerDTO) {
-       boolean response = customerService.updateCustomer(customerDTO);
-       if (response){
-           return new ResponseUtil(200,"Customer is updated",null);
-       }
-        return new ResponseUtil(404,"customer not updated",null);
+        customerService.updateCustomer(customerDTO);
+        return new ResponseUtil(200, "Customer is updated", null);
     }
 
     @DeleteMapping(path = "delete", params = {"id"})
-    public ResponseUtil deleteCustomer(@RequestParam(value = "id") int id){
-        System.out.println(id );
+    public ResponseUtil deleteCustomer(@RequestParam(value = "id") int id) {
+        System.out.println(id);
         customerService.deleteCustomer(id);
-        return new ResponseUtil(200,"Customer is deleted",null);
+        return new ResponseUtil(200, "Customer is deleted", null);
     }
 }

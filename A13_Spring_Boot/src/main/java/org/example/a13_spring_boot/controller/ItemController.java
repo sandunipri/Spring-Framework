@@ -17,35 +17,30 @@ public class ItemController {
     private ItemServiceImpl itemService;
 
     @PostMapping(path = "save")
-    public ResponseUtil saveItem(@RequestBody ItemDTO itemDTO){
-        boolean res = itemService.saveItem(itemDTO);
-        if (res) {
-            return new ResponseUtil(200, "Item saved successfull", null);
-        }
-        return new ResponseUtil(409,"Item not saved",null);
+    public ResponseUtil saveItem(@RequestBody ItemDTO itemDTO) {
+        itemService.saveItem(itemDTO);
+        return new ResponseUtil(200, "Item saved successfull", null);
 
     }
 
     @GetMapping(path = "get")
-    public ResponseUtil getItems(){
-         return new ResponseUtil(200,"success",itemService.getItems());
+    public ResponseUtil getItems() {
+        return new ResponseUtil(200, "success", itemService.getItems());
     }
 
 
     @PutMapping(path = "update")
-    public ResponseUtil updateItem(@RequestBody ItemDTO itemDTO){
-        boolean res =  itemService.updateItem(itemDTO);
-        if (res){
-            return new ResponseUtil(200,"Item Updated Successful",null);
-        }
-        return new ResponseUtil(404,"Item not Updated",null);
-    }
+    public ResponseUtil updateItem(@RequestBody ItemDTO itemDTO) {
+        itemService.updateItem(itemDTO);
+        return new ResponseUtil(200, "Item Updated Successful", null);
 
+    }
 
     @DeleteMapping(path = "delete", params = {"code"})
-    public ResponseUtil deleteItem(@RequestParam(value = "code") int code){
-         return new ResponseUtil(200,"Item Deleted Successful",itemService.deleteItem(code));
+    public ResponseUtil deleteItem(@RequestParam(value = "code") int code) {
+        itemService.deleteItem(code);
+        return new ResponseUtil(200, "Item Deleted Successful", null);
 
     }
-
 }
+

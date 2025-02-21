@@ -22,7 +22,7 @@ public class ItemServiceImpl implements ItemService {
     private ModelMapper modelMapper;
 
     @Override
-    public Boolean saveItem(ItemDTO itemDTO) {
+    public void saveItem(ItemDTO itemDTO) {
       /*  Item item = new Item(
                 itemDTO.getCode(),
                 itemDTO.getName(),
@@ -32,9 +32,8 @@ public class ItemServiceImpl implements ItemService {
 
         if (!itemRepo.existsById(itemDTO.getCode())){
             itemRepo.save(modelMapper.map(itemDTO, Item.class));
-            return true;
         }
-        return false;
+       throw new RuntimeException("Item already exist");
     }
 
     @Override
@@ -56,17 +55,19 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Boolean updateItem(ItemDTO itemDTO) {
-        if (itemRepo.existsById(itemDTO.getCode())){
-            itemRepo.save(modelMapper.map(itemDTO,Item.class));
-            return true;
+    public void updateItem(ItemDTO itemDTO) {
+        if (!itemRepo.existsById(itemDTO.getCode())){
+            throw new RuntimeException("Item does not Exists");
         }
-        return false;
+        itemRepo.save(modelMapper.map(itemDTO,Item.class));
     }
 
     @Override
-    public Boolean deleteItem(int code) {
-        itemRepo.deleteById(code);
-        return true;
+    public void deleteItem(int code) {
+
+        if (itemRepo.existsById(code)){
+            itemRepo.deleteById(code);
+        }
+        throw new RuntimeException("Item does not Exists");
     }
 }

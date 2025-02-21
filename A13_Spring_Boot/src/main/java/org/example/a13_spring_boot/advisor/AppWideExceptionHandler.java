@@ -12,7 +12,7 @@ public class AppWideExceptionHandler {
     public ResponseUtil exceptionHandler(Exception e){
        return new ResponseUtil(
                500,
-               "e.getMessage()",
+               e.getMessage(),
                null);
     }
 }

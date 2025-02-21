@@ -21,7 +21,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private ModelMapper modelMapper;
     @Override
-    public boolean saveCustomer(CustomerDTO customerDTO){
+    public void saveCustomer(CustomerDTO customerDTO){
       /*  Customer customer = new Customer(
                 customerDTO.getId(),
                 customerDTO.getName(),
@@ -30,9 +30,8 @@ public class CustomerServiceImpl implements CustomerService {
 
         if (!customerRepo.existsById(customerDTO.getId())){
             customerRepo.save(modelMapper.map(customerDTO,Customer.class));
-            return true;
         }
-        return false;
+        throw new RuntimeException("Customer already exist");
     }
 
     @Override
@@ -51,18 +50,20 @@ public class CustomerServiceImpl implements CustomerService {
         return customerDTOs;*/
         return modelMapper.map(customerRepo.findAll(),new TypeToken<List<CustomerDTO>>(){}.getType());
     }
+
     @Override
-    public boolean updateCustomer(CustomerDTO customerDTO) {
+    public void updateCustomer(CustomerDTO customerDTO) {
         if (customerRepo.existsById(customerDTO.getId())){
             customerRepo.save(modelMapper.map(customerDTO,Customer.class));
-            return true;
         }
-        return true;
+        throw new RuntimeException("Customer does not Exists");
     }
 
     @Override
-    public boolean deleteCustomer(int id) {
-        customerRepo.deleteById(id);
-        return customerRepo.existsById(id);
+    public void deleteCustomer(int id) {
+        if (customerRepo.existsById(id)){
+            customerRepo.deleteById(id);
+        }
+        throw new RuntimeException("Customer does not Exists");
     }
 }

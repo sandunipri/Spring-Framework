@@ -7,8 +7,11 @@ import org.modelmapper.TypeToken;
 import java.util.List;
 
 public interface ItemService {
-     Boolean saveItem(ItemDTO itemDTO);
-     List<ItemDTO> getItems();
-     Boolean updateItem(ItemDTO itemDTO);
-     Boolean deleteItem(int code);
+    void saveItem(ItemDTO itemDTO);
+
+    List<ItemDTO> getItems();
+
+    void updateItem(ItemDTO itemDTO);
+
+    void deleteItem(int code);
 }

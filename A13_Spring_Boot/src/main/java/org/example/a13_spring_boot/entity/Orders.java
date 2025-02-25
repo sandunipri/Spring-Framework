@@ -1,12 +1,11 @@
 package org.example.a13_spring_boot.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 public class Orders {
@@ -18,14 +17,19 @@ public class Orders {
     @CreationTimestamp
     private Timestamp dateAndTime;
 
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<OrderDetail> orderDetailList;
+
     public Orders() {
     }
 
-    public Orders(int orderId, Customer customer, double total, Timestamp dateAndTime) {
+    public Orders(int orderId, Customer customer, double total, Timestamp dateAndTime, List<OrderDetail> orderDetailList) {
         this.orderId = orderId;
         this.customer = customer;
         this.total = total;
         this.dateAndTime = dateAndTime;
+        this.orderDetailList = orderDetailList;
     }
 
     public int getOrderId() {
@@ -60,6 +64,14 @@ public class Orders {
         this.dateAndTime = dateAndTime;
     }
 
+    public List<OrderDetail> getOrderDetailList() {
+        return orderDetailList;
+    }
+
+    public void setOrderDetailList(List<OrderDetail> orderDetailList) {
+        this.orderDetailList = orderDetailList;
+    }
+
     @Override
     public String toString() {
         return "Orders{" +
@@ -67,6 +79,7 @@ public class Orders {
                 ", customer=" + customer +
                 ", total=" + total +
                 ", dateAndTime=" + dateAndTime +
+                ", orderDetailList=" + orderDetailList +
                 '}';
     }
 }

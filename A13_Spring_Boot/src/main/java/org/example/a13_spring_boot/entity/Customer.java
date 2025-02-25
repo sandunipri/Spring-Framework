@@ -1,7 +1,8 @@
 package org.example.a13_spring_boot.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Customer {
@@ -10,13 +11,17 @@ public class Customer {
     private String name;
     private String address;
 
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Orders> ordersList;
+
     public Customer() {
     }
 
-    public Customer(int id, String name, String address) {
+    public Customer(int id, String name, String address, List<Orders> ordersList) {
         this.id = id;
         this.name = name;
         this.address = address;
+        this.ordersList = ordersList;
     }
 
     public int getId() {
@@ -43,12 +48,21 @@ public class Customer {
         this.address = address;
     }
 
+    public List<Orders> getOrdersList() {
+        return ordersList;
+    }
+
+    public void setOrdersList(List<Orders> ordersList) {
+        this.ordersList = ordersList;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
+                ", ordersList=" + ordersList +
                 '}';
     }
 }

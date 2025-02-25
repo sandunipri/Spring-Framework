@@ -21,7 +21,6 @@ public class CustomerController {
     public ResponseUtil getCustomer(@RequestBody CustomerDTO customerDTO) {
         customerService.saveCustomer(customerDTO);
         return new ResponseUtil(201, "customer is saved", null);
-
     }
 
     @GetMapping(path = "get")

@@ -5,7 +5,7 @@ import org.example.a13_spring_boot.entity.Orders;
 
 public class OrderDetailDTO {
 
-    private int orderId;
+    private int orderDetailId;
 
     private Orders orders;
 
@@ -14,18 +14,18 @@ public class OrderDetailDTO {
     public OrderDetailDTO() {
     }
 
-    public OrderDetailDTO(int orderId, Orders orders, Item item) {
-        this.orderId = orderId;
+    public OrderDetailDTO(int orderDetailId, Orders orders, Item item) {
+        this.orderDetailId = orderDetailId;
         this.orders = orders;
         this.item = item;
     }
 
-    public int getOrderId() {
-        return orderId;
+    public int getOrderDetailId() {
+        return orderDetailId;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setOrderDetailId(int orderDetailId) {
+        this.orderDetailId = orderDetailId;
     }
 
     public Orders getOrders() {
@@ -46,8 +46,8 @@ public class OrderDetailDTO {
 
     @Override
     public String toString() {
-        return "OrderDetail{" +
-                "orderId=" + orderId +
+        return "OrderDetailDTO{" +
+                "orderDetailId=" + orderDetailId +
                 ", orders=" + orders +
                 ", item=" + item +
                 '}';

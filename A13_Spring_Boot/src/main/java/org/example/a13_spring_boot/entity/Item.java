@@ -13,17 +13,17 @@ public class Item {
     private double price;
 
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<OrderDetail> orderDetailslist;
+    private List<OrderDetail> orderDetailsList;
 
     public Item() {
     }
 
-    public Item(int code, int qty, String name, double price, List<OrderDetail> orderDetailslist) {
+    public Item(int code, String name, int qty, double price, List<OrderDetail> orderDetailsList) {
         this.code = code;
-        this.qty = qty;
         this.name = name;
+        this.qty = qty;
         this.price = price;
-        this.orderDetailslist = orderDetailslist;
+        this.orderDetailsList = orderDetailsList;
     }
 
     public int getCode() {
@@ -58,12 +58,12 @@ public class Item {
         this.price = price;
     }
 
-    public List<OrderDetail> getOrderDetailslist() {
-        return orderDetailslist;
+    public List<OrderDetail> getOrderDetailsList() {
+        return orderDetailsList;
     }
 
-    public void setOrderDetailslist(List<OrderDetail> orderDetailslist) {
-        this.orderDetailslist = orderDetailslist;
+    public void setOrderDetailsList(List<OrderDetail> orderDetailsList) {
+        this.orderDetailsList = orderDetailsList;
     }
 
     @Override
@@ -73,7 +73,7 @@ public class Item {
                 ", name='" + name + '\'' +
                 ", qty=" + qty +
                 ", price=" + price +
-                ", orderDetailslist=" + orderDetailslist +
+                ", orderDetailsList=" + orderDetailsList +
                 '}';
     }
 }

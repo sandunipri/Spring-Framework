@@ -1,33 +1,34 @@
 package org.example.a13_spring_boot.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class OrderDetail {
     @Id
-    private int orderId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int orderDetailId;
+
     @ManyToOne
     private Orders orders;
+
     @ManyToOne
     private Item item;
 
     public OrderDetail() {
     }
 
-    public OrderDetail(int orderId, Orders orders, Item item) {
-        this.orderId = orderId;
+    public OrderDetail(int orderDetailId, Orders orders, Item item) {
+        this.orderDetailId = orderDetailId;
         this.orders = orders;
         this.item = item;
     }
 
-    public int getOrderId() {
-        return orderId;
+    public int getOrderDetailId() {
+        return orderDetailId;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setOrderDetailId(int orderDetailId) {
+        this.orderDetailId = orderDetailId;
     }
 
     public Orders getOrders() {
@@ -49,7 +50,7 @@ public class OrderDetail {
     @Override
     public String toString() {
         return "OrderDetail{" +
-                "orderId=" + orderId +
+                "orderDetailId=" + orderDetailId +
                 ", orders=" + orders +
                 ", item=" + item +
                 '}';

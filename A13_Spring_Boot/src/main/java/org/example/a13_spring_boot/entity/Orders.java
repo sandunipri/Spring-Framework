@@ -10,24 +10,24 @@ import java.util.List;
 @Entity
 public class Orders {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orderId;
+
     @ManyToOne
     private Customer customer;
-    private double total;
+
     @CreationTimestamp
     private Timestamp dateAndTime;
 
-
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderDetail> orderDetailList;
 
     public Orders() {
     }
 
-    public Orders(int orderId, Customer customer, double total, Timestamp dateAndTime, List<OrderDetail> orderDetailList) {
+    public Orders(int orderId, Customer customer, Timestamp dateAndTime, List<OrderDetail> orderDetailList) {
         this.orderId = orderId;
         this.customer = customer;
-        this.total = total;
         this.dateAndTime = dateAndTime;
         this.orderDetailList = orderDetailList;
     }
@@ -46,14 +46,6 @@ public class Orders {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
     }
 
     public Timestamp getDateAndTime() {
@@ -77,7 +69,6 @@ public class Orders {
         return "Orders{" +
                 "orderId=" + orderId +
                 ", customer=" + customer +
-                ", total=" + total +
                 ", dateAndTime=" + dateAndTime +
                 ", orderDetailList=" + orderDetailList +
                 '}';

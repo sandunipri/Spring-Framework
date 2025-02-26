@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="04_FullMode_Vs_LightMode" />
+        <module name="A14_Spring_Security" />
         <module name="08_Spring_Web_MVC" />
         <module name="09_Spring_RestController" />
         <module name="10_Back_End" />
@@ -37,6 +38,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="A13_Spring_Boot" options="-parameters" />
+      <module name="A14_Spring_Security" options="-parameters" />
       <module name="S13_Spring_Boot" options="-parameters" />
     </option>
   </component>

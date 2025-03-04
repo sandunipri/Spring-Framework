@@ -1,5 +1,9 @@
 package org.example.a13_spring_boot.dto;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import org.example.a13_spring_boot.entity.Item;
 import org.example.a13_spring_boot.entity.Orders;
 
@@ -46,7 +50,7 @@ public class OrderDetailDTO {
 
     @Override
     public String toString() {
-        return "OrderDetailDTO{" +
+        return "OrderDetail{" +
                 "orderDetailId=" + orderDetailId +
                 ", orders=" + orders +
                 ", item=" + item +

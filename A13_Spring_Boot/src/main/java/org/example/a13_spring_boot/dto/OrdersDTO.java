@@ -1,25 +1,31 @@
 package org.example.a13_spring_boot.dto;
 
 
+import jakarta.persistence.*;
 import org.example.a13_spring_boot.entity.Customer;
+import org.example.a13_spring_boot.entity.OrderDetail;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class OrdersDTO {
 
     private int orderId;
+
     private Customer customer;
-    private double total;
+
     private Timestamp dateAndTime;
+    private List<OrderDetail> orderDetailList;
 
     public OrdersDTO() {
     }
 
-    public OrdersDTO(int orderId, Customer customer, double total, Timestamp dateAndTime) {
+    public OrdersDTO(int orderId, Customer customer, Timestamp dateAndTime, List<OrderDetail> orderDetailList) {
         this.orderId = orderId;
         this.customer = customer;
-        this.total = total;
         this.dateAndTime = dateAndTime;
+        this.orderDetailList = orderDetailList;
     }
 
     public int getOrderId() {
@@ -38,14 +44,6 @@ public class OrdersDTO {
         this.customer = customer;
     }
 
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
     public Timestamp getDateAndTime() {
         return dateAndTime;
     }
@@ -54,13 +52,21 @@ public class OrdersDTO {
         this.dateAndTime = dateAndTime;
     }
 
+    public List<OrderDetail> getOrderDetailList() {
+        return orderDetailList;
+    }
+
+    public void setOrderDetailList(List<OrderDetail> orderDetailList) {
+        this.orderDetailList = orderDetailList;
+    }
+
     @Override
     public String toString() {
         return "Orders{" +
                 "orderId=" + orderId +
                 ", customer=" + customer +
-                ", total=" + total +
                 ", dateAndTime=" + dateAndTime +
+                ", orderDetailList=" + orderDetailList +
                 '}';
     }
 }

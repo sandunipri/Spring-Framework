@@ -1,5 +1,6 @@
 package org.example.a13_spring_boot.service.impl;
 
+import jakarta.transaction.Transactional;
 import org.example.a13_spring_boot.dto.CustomerDTO;
 import org.example.a13_spring_boot.dto.ItemDTO;
 import org.example.a13_spring_boot.dto.OrderDetailDTO;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.util.List;
 
+@Transactional
 @Service
 public class PlaceOrderServiceImpl implements PlaceOrderService {
     @Autowired
@@ -49,11 +51,11 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
         List<ItemDTO> itemDTOS = cartTm.getItemDTOS();
 
 
+        //update qty
         for (ItemDTO itemDTO : itemDTOS){
             Item items = itemRepo.findById(itemDTO.getCode()).orElseThrow(() ->
                     new RuntimeException("Item not found"));
-
-            items.setQty(itemDTO.getQty()-itemDTO.getQty());
+            items.setQty(items.getQty() - itemDTO.getQty());
             itemRepo.save(items);
         }
 

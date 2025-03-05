@@ -7,17 +7,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="04_FullMode_Vs_LightMode" />
+        <module name="A15_SpringBean_Validation" />
         <module name="A14_Spring_Security" />
-        <module name="08_Spring_Web_MVC" />
         <module name="09_Spring_RestController" />
+        <module name="01_Spring_Core" />
+        <module name="06_Runtime_Value_Injection" />
+        <module name="12_Spring_Data_JPA" />
+        <module name="04_FullMode_Vs_LightMode" />
+        <module name="08_Spring_Web_MVC" />
         <module name="10_Back_End" />
         <module name="05_Configuration" />
         <module name="07_Spring-Enviroment" />
-        <module name="01_Spring_Core" />
         <module name="02_Spring_Bean_LifeCycle" />
-        <module name="06_Runtime_Value_Injection" />
-        <module name="12_Spring_Data_JPA" />
         <module name="03_Spring_Dependency_Injection" />
       </profile>
       <profile name="Annotation profile for A13_Spring_Boot" enabled="true">
@@ -39,6 +40,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="A13_Spring_Boot" options="-parameters" />
       <module name="A14_Spring_Security" options="-parameters" />
+      <module name="A15_SpringBean_Validation" options="-parameters" />
       <module name="S13_Spring_Boot" options="-parameters" />
     </option>
   </component>

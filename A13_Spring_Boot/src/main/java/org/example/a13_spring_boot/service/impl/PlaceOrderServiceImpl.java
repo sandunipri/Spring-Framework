@@ -22,7 +22,6 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.util.List;
 
-@Transactional
 @Service
 public class PlaceOrderServiceImpl implements PlaceOrderService {
     @Autowired

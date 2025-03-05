@@ -44,7 +44,7 @@ $(document).ready(function () {
 
                 res.data.forEach((item) => {
                     $('#ItemIdSelected').append(`
-                    <option value="${item.id}">${item.name}</option>
+                    <option value="${item.code}">${item.name}</option>
                     `)
                 });
                 AllItems = res.data
@@ -57,22 +57,22 @@ $(document).ready(function () {
     }
 
     $('#CustomerIdSelect').change(function () {
-        selectedCustomer = Allcustomers.find((customer) => {
-            return customer.id === $('#CustomerIdSelect').val()
-        })
+        let customerIdSelect = $('#CustomerIdSelect')
+        selectedCustomer = Allcustomers.find((customer) => customer.id === Number(customerIdSelect.val()))
     })
 
     $('#ItemIdSelected').change(function () {
-       selectedItem = AllItems.find((item) => {
-            return item.id === $('#ItemIdSelected').val()
-        })
+        let itemIdSelect = $('#ItemIdSelected')
+       selectedItem = AllItems.find((item) => item.code === Number(itemIdSelect.val()))
 
     })
 
     $('#AddOrder').click(function () {
         let qty = $('#qty').val();
 
-        if (selectedItem ==null || selectedCustomer == null) {
+        console.log(selectedCustomer)
+        console.log(selectedItem)
+        if (selectedItem == null || qty === "") {
             alert("Please select customer and item")
             return;
         }
@@ -107,16 +107,13 @@ $(document).ready(function () {
     });
 
     $('#placeOder').click(function (){
-        let customerId  = $('#CustomerIdSelect').val();
-        let customer = Allcustomers.find((customer) => customer.id === Number(customerId))
-
         $.ajax({
-            url :"",
+            url :"http://localhost:8080/api/v1/placeOrder/placeOrder",
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify({
-                "customerDTO": customer,
-                "orderDetailsDTO": cartDetails
+                "customerDTO": selectedCustomer,
+                "itemDTOS": cartDetails
             }),
             success: (res) => {
                 alert("Order placed successfully")

@@ -23,6 +23,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Service
+@Transactional
 public class PlaceOrderServiceImpl implements PlaceOrderService {
     @Autowired
     private OrdersRepo ordersRepo;
